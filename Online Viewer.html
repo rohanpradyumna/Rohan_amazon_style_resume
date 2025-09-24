@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rohan Pradyumna - Amazon Style Resume</title>
+    <style>
+        :root {
+            --amazon-black: #131921;
+            --amazon-dark: #232f3e;
+            --amazon-gold: #febd69;
+            --amazon-orange: #f08804;
+            --amazon-link: #007185;
+            --star: #ffa41c;
+            --success: #067d62;
+            --badge-blue: #26a6fe;
+            --badge-green: #007600;
+            --muted: #555;
+            --border: #e3e6e6;
+            --bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font: 15px/1.6 Arial, Helvetica, sans-serif;
+            color: #111;
+            background: #f6f6f6
+        }
+
+        /* Top Nav */
+        .nav {
+            background: var(--amazon-black);
+            color: #fff;
+            padding: 10px 16px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .nav .brand {
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: .5px
+        }
+
+        .nav .search {
+            flex: 1;
+            min-width: 220px;
+            display: flex
+        }
+
+        .nav input {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 4px 0 0 4px
+        }
+
+        .nav button {
+            padding: 8px 12px;
+            border: none;
+            background: var(--amazon-gold);
+            border-radius: 0 4px 4px 0;
+            cursor: pointer
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            opacity: .9
+        }
+
+        .subnav {
+            background: var(--amazon-dark);
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 14px
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1180px;
+            margin: 18px auto;
+            padding: 0 16px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 22px
+        }
+
+        /* Card */
+        .card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, .04)
+        }
+
+        .card .body {
+            padding: 18px
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 8px 0 16px
+        }
+
+        /* Product header */
+        .title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .title h1 {
+            margin: 0;
+            font-size: 28px
+        }
+
+        .meta {
+            color: #565959;
+            font-size: 13px
+        }
+
+        .rating {
+            color: var(--star);
+            font-size: 16px
+        }
+
+        .small-gray {
+            color: #777;
+            font-size: 12px
+        }
+
+        .badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px
+        }
+
+        .badge {
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap
+        }
+
+        .badge.choice {
+            background: #232f3e;
+            color: #fff;
+            border-color: #232f3e
+        }
+
+        .badge.green {
+            background: #edfaf1;
+            color: #0a6b3a;
+            border-color: #b6e2c8
+        }
+
+        /* Two column left details */
+        h2.section {
+            font-size: 20px;
+            margin: 0 0 8px
+        }
+
+        h3.role {
+            margin: 0;
+            font-size: 16px
+        }
+
+        .row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .pill {
+            display: inline-block;
+            background: #eef2f7;
+            border: 1px solid #d7dfea;
+            border-radius: 999px;
+            padding: 2px 10px;
+            font-size: 12px;
+            color: #334155
+        }
+
+        .loc {
+            color: #565959
+        }
+
+        ul.bullets {
+            margin: 8px 0 12px 18px
+        }
+
+        /* Right sidebar */
+        aside .pricebox {
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px
+        }
+
+        .instock {
+            color: var(--badge-green);
+            font-weight: 700
+        }
+
+        .qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 8px 0
+        }
+
+        .qty select {
+            padding: 6px;
+            border: 1px solid var(--border);
+            border-radius: 6px
+        }
+
+        .cta {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 14px 0
+        }
+
+        .btn {
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid #d5d9d9;
+            background: linear-gradient(#ffd814, #f9a41a);
+            cursor: pointer;
+            font-weight: 700
+        }
+
+        .btn.buy {
+            background: linear-gradient(#ffa41c, #f08804)
+        }
+
+        .sidebar-section {
+            margin-top: 16px
+        }
+
+        .sidebar-section h4 {
+            margin: 0 0 6px;
+            font-size: 16px
+        }
+
+        .kv {
+            margin: 0;
+            color: #333
+        }
+
+        .kv small {
+            display: block;
+            color: #666
+        }
+
+        .list-tight {
+            margin: 6px 0 0 18px
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px
+        }
+
+        a.link {
+            color: var(--amazon-link);
+            text-decoration: none
+        }
+
+        /* Footer note */
+        .footnote {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px
+        }
+
+        /* Print styles */
+        @media print {
+
+            .nav,
+            .subnav,
+            .btn,
+            .qty,
+            .footnote {
+                display: none !important
+            }
+
+            body {
+                background: #fff
+            }
+
+            .container {
+                margin: 0;
+                padding: 0
+            }
+
+            .grid {
+                gap: 16px
+            }
+
+            .card,
+            .pricebox {
+                border-color: #ccc;
+                box-shadow: none
+            }
+        }
+
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Simulated Amazon header -->
+    <div class="nav">
+        <div class="brand">amazon</div>
+        <div class="search">
+            <input placeholder="what does a good product/AI leader look like?" />
+            <button>Search</button>
+        </div>
+        <a href="#">Deals</a>
+        <a href="#">Account & Lists</a>
+        <a href="#">Returns</a>
+        <a href="#">Cart</a>
+    </div>
+
+    <div class="subnav">
+        Deliver to Dallas, TX • Contact: 240-854-3253 •
+        <a class="link" href="mailto:pradyumnarohan@gmail.com" style="color:#fff;text-decoration:underline">pradyumnarohan@gmail.com</a> •
+        <a class="link" style="color:#fff;text-decoration:underline" href="https://www.linkedin.com/in/rohanpradyumna/" target="_blank" rel="noreferrer">linkedin.com/in/rohanpradyumna</a>
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            <!-- LEFT: Main content -->
+            <section class="card">
+                <div class="body">
+                    <div class="title">
+                        <div>
+                            <h1>Rohan Pradyumna</h1>
+                            <div class="row small-gray">
+                                <span>Brand: Product & AI</span>
+                                <span>•</span>
+                                <span class="rating">★★★★★</span>
+                                <span class="small-gray">25,000+ users served • 1,000+ answered questions</span>
+                            </div>
+                            <div class="badges">
+                                <span class="badge choice">Amazon's Choice</span>
+                                <span class="badge green">Ethical AI Awreness</span>
+                                <span class="badge">Zero to One Expert</span>
+                                <span class="badge">AI Product Builder </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <h2 class="section">Description</h2>
+                    <p class="meta">
+                        AI Product leader and builder with end-to-end experience taking 0→1 products to market, shipping voice and chat agents, and standing up evaluation/governance for GenAI systems. Strong in PRDs, road-mapping, analytics, and rapid prototyping—comfortable across OpenAI/Azure, RAG pipelines, Twilio/Genesys voice, and data-driven decisioning.
+                    </p>
+
+                    <div class="divider"></div>
+
+                    <h2 class="section">Work Experience</h2>
+
+                    <article>
+                        <div class="row" style="justify-content:space-between">
+                            <h3 class="role">NSP Systems — AI Product Consultant</h3>
+                            <span class="loc">Dallas, TX • Jun 2025 – Present</span>
+                        </div>
+                        <ul class="bullets">
+                            <li>Pioneered <strong>SimuCall AI</strong>, an IVR testing platform simulating thousands of customer personas and full auth flows; integrated Twilio outbound calling, OTP handling, and Genesys routing to eliminate weeks of manual QA and achieve near-100% routing accuracy.</li>
+                            <li>Built an AI-powered IVR POC (Eleven Labs + Genesys) cutting average wait times from 90s → 20s, boosting CSAT by 65%, and automating ticketing to save 3–5 minutes per support call.</li>
+                            <li>Served as AI QA consultant for OpenAI + RAG + Twilio virtual agent; analyzed 20K+ chats, added eval benchmarks (RLHF, LangFuse), and rescued 20% of failing conversations—preventing 2,000+ truck rolls in 4 months.</li>
+                            <li>Delivered POCs including a <em>NOC Intelligence Map</em> (180+ FBOs, real-time weather alerts) reducing decision delays ~40%, and an <em>Executive Research Assistant</em> that saved 50+ hours/quarter.</li>
+                            <li>Product-managed <em>Modozo</em> (AI supply-chain optimization) 0→1: multi-persona research, PRDs, roadmaps; reduced production cycles from 120 → 60–70 days, driving ~40% efficiency gains.</li>
+                        </ul>
+                    </article>
+
+                    <article>
+                        <div class="row" style="justify-content:space-between">
+                            <h3 class="role">Intripid (formerly Travana) — Co-Founder & Product Lead</h3>
+                            <span class="loc">Dallas, TX • Apr 2023 – May 2025</span>
+                        </div>
+                        <div class="small-gray"><em>Product: Intripid — “What’s Next”</em></div>
+                        <ul class="bullets">
+                            <li>Drove 0 to 1 launch of a real-time location-aware AI travel recommendation system called <strong>Intripid: What's Next</strong> in 40 days, onboarding 2,000+ users in two weeks through automated, AI-first journeys.</li>
+                            <li>Architected a multi-agent RAG recommendation engine that delivered <strong>92% user satisfaction</strong> vs. 78% baseline GPT-4 output.</li>
+                            <li>Engineered an AI-powered voice travel advisor using <strong>Eleven Labs</strong> and internal APIs to provide real-time, hands-free travel suggestions, achieving <strong>90% task completion</strong> in user testing.</li>
+                            <li>Secured <strong>$150K</strong> (incl. $50K non-dilutive grant) and closed <strong>$50K ARR</strong> via enterprise pilots; led a cross-functional team of 6 using Agile sprints. Received <strong>$100K AWS Credits</strong> from NVIDIA Inception Program.</li>
+                            <li>Among fewer than 1% of international students to found a venture, self-taught end-to-end startup development, merged with a complementary firm to strengthen the founding team, and <strong>pivoted B2C → B2B</strong>, unlocking recurring revenue and shorter sales cycles.</li>
+                            <li>Selected for <strong>Antler Austin</strong> Founder in Residence program (top 3% of 6,000 applicants); pitched Intripid's AI roadmap to the investment committee.</li>
+                            <li>Oversaw end-to-end project delivery: conducted user interviews, prioritised features, ran Agile sprints and A/B tests, monitored KPIs in Google Analytics and PostHog, and hired, managed and mentored a team of 6.</li>
+                        </ul>
+                    </article>
+
+                    <article>
+                        <div class="row" style="justify-content:space-between">
+                            <h3 class="role">Flock AI — Associate Product Manager</h3>
+                            <span class="loc">Hyderabad, TS, India • Sep 2021 – Aug 2022</span>
+                        </div>
+                        <ul class="bullets">
+                            <li>Co-created product strategy & roadmap; shipped MVP with a lean team of 4.</li>
+                            <li>Scaled to <strong>25K users</strong> via behavioral analytics, refined journeys, and improved acquisition funnels.</li>
+                            <li>Ran competitive intelligence and UX audits, lifting design workflow efficiency <strong>67%</strong> and achieving a <strong>2.5× LTV/CAC</strong>.</li>
+                            <li>Drove UI wireframes and A/B tests with 1,000 testers; improved product-market alignment and engagement (+12%).</li>
+                        </ul>
+                    </article>
+
+                    <article>
+                        <div class="row" style="justify-content:space-between">
+                            <h3 class="role">Brightcom Group — Product Intern</h3>
+                            <span class="loc">Hyderabad, TS, India • Aug 2019 – Sep 2021</span>
+                        </div>
+                        <ul class="bullets">
+                            <li>Developed cloud architecture for an internal data-annotation tool; reduced operating costs by 35%.</li>
+                            <li>Authored PRDs; partnered with UI/UX to define Datametrix (data-tagging platform) packaging and framework.</li>
+                        </ul>
+                    </article>
+
+                    <div class="divider"></div>
+
+                    <h2 class="section">Leadership & Volunteering</h2>
+
+                    <article>
+                        <div class="row" style="justify-content:space-between">
+                            <h3 class="role">Blood Warriors India — Volunteer</h3>
+                            <span class="loc">India</span>
+                        </div>
+                        <ul class="bullets">
+                            <li>Supported blood donation drives and donor coordination and facilitated over 2000+ blood donationtion for Thallasemia patients; assisted with outreach and logistics to improve access for urgent cases.</li>
+                        </ul>
+                    </article>
+
+                    <article>
+                        <div class="row" style="justify-content:space-between">
+                            <h3 class="role">Make A Difference India — City Manager, Human Capital</h3>
+                            <span class="loc">Hyderabad, TS, India • Jun 2018 – May 2021</span>
+                        </div>
+                        <ul class="bullets">
+                            <li>Led a 15-member HR team; recruited, onboarded, and retained 200+ volunteers with 55% retention.</li>
+                            <li>Ranked top-5 campaigner nationally; mobilized 1,000+ new volunteers and created trauma-healing workshops (“Circle of Life,” “River of Life”).</li>
+                        </ul>
+                    </article>
+
+                    <article>
+                        <div class="row" style="justify-content:space-between">
+                            <h3 class="role">Hope by Kelly School of Management — Volunteer</h3>
+                            <span class="loc">Hyderabad, TS, India • Mar 2020 – May 2021</span>
+                        </div>
+                        <ul class="bullets">
+                            <li>Joined Indiana University’s HOPE Digital Project to support COVID-impacted startups worldwide.</li>
+                            <li>Launched no-code/low-code sites and apps (Bubble, Wix) restoring critical revenue channels for small businesses.</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <!-- RIGHT: Sidebar -->
+            <aside>
+                <div class="card">
+                    <div class="body pricebox">
+                        <div class="instock">In Stock</div>
+                        <div class="qty">
+                            <strong>Qty:</strong>
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                        <div class="cta">
+                            <button class="btn">Add to Cart</button>
+                            <button class="btn buy">Buy Now</button>
+                        </div>
+                        <div class="small-gray">Customers who viewed this also viewed: <em>skills, education, and publications</em>.</div>
+                    </div>
+                </div>
+
+                <div class="card sidebar-section">
+                    <div class="body">
+                        <h4>EDUCATION</h4>
+                        <p class="kv"><strong>University of Maryland, Robert H. Smith School of Business</strong><br><small>Master of Science, Information Systems • College Park, MD • Dec 2023</small></p>
+                        <ul class="list-tight">
+                            <li>Teaching Assistant: Led “Introduction to Information Systems” tutorials; graded 128 students over 10 tasks.</li>
+                        </ul>
+                        <p class="kv" style="margin-top:10px"><strong>Mahatma Gandhi Institute of Technology</strong><br><small>Bachelor of Technology, Electrical Engineering • Hyderabad, India • Sep 2021</small></p>
+                        <ul class="list-tight">
+                            <li>Publication (IRJEC): Sentiment Analysis on COVID-19 Vaccination Tweets (1.6M+ tweets, NLP, visualizations).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card sidebar-section">
+                    <div class="body">
+                        <h4>SKILLS</h4>
+                        <div class="skills-grid">
+                            <span class="pill">GenAI & LLMs</span>
+                            <span class="pill">OpenAI / Azure OpenAI</span>
+                            <span class="pill">Prompt & Context Eng.</span>
+                            <span class="pill">Multi-Agent RAG</span>
+                            <span class="pill">Vector Search</span>
+                            <span class="pill">Eleven Labs (Voice)</span>
+                            <span class="pill">Twilio</span>
+                            <span class="pill">Genesys</span>
+                            <span class="pill">PRDs & Roadmaps</span>
+                            <span class="pill">OKRs</span>
+                            <span class="pill">Agile / Scrum (Jira)</span>
+                            <span class="pill">A/B & MVT Testing</span>
+                            <span class="pill">Stakeholder Storytelling</span>
+                            <span class="pill">SQL</span>
+                            <span class="pill">Python (pandas)</span>
+                            <span class="pill">Analytics (GA, PostHog)</span>
+                            <span class="pill">Metabase</span>
+                            <span class="pill">Tableau / Power BI</span>
+                            <span class="pill">Figma</span>
+                            <span class="pill">Lovable.dev / Replit / v0.dev</span>
+                            <span class="pill">n8n / Logic Apps</span>
+                            <span class="pill">Power Automate</span>
+                            <span class="pill">Git</span>
+                            <span class="pill">Responsible AI • SOC2 • GDPR</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card sidebar-section">
+  <div class="body">
+    <h4>PROJECTS</h4>
+
+    <p class="kv"><strong>SimuCall AI (Testing Platform)</strong><br><small>2025</small></p>
+    <ul class="list-tight">
+      <li>Autonomous IVR persona simulation with Twilio, OTP flows, and Genesys routing validation.</li>
+    </ul>
+
+    <p class="kv" style="margin-top:10px"><strong>Universal Billing Integration Protocol (MCP) — PoC</strong><br><small>2025</small></p>
+    <ul class="list-tight">
+      <li>Prototyped an MCP server exposing vendor-neutral tools (<em>getInvoice</em>, <em>getBalance</em>, <em>postPayment</em>) with canonical JSON schemas, enabling a single integration path for Stripe-like, telco, and legacy billing APIs.</li>
+      <li>Standardized field mappings and idempotent payment flows; demoed cross-provider calls end-to-end and cut basic integration setup from days to minutes in test sandboxes.</li>
+    </ul>
+  </div>
+</div>
+
+
+                <div class="card sidebar-section">
+                    <div class="body">
+                        <h4>ACHIEVEMENTS</h4>
+                        <ul class="list-tight">
+                            <li>Selected: Antler Austin Founder-in-Residence (top 3% of 6,000 applicants)</li>
+                            <li>Raised $150K (incl. $50K grant) • Closed $50K ARR via pilots</li>
+                            <li>NVIDIA Inception: $100K AWS Credits</li>
+                        </ul>
+                        <p class="footnote">View profile:
+                            <a class="link" href="https://www.linkedin.com/in/rohanpradyumna/" target="_blank" rel="noreferrer">linkedin.com/in/rohanpradyumna</a>
+                        </p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</body>
+
+</html>
