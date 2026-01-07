@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rohan Pradyumna - Netflix Style Resume</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Netflix+Sans:wght@400;500;700&display=swap');
+
+        :root {
+            --netflix-black: #141414;
+            --netflix-red: #E50914;
+            --netflix-dark-gray: #1f1f1f;
+            --netflix-gray: #808080;
+            --netflix-white: #ffffff;
+            --card-bg: #2f2f2f;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: var(--netflix-black);
+            color: var(--netflix-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 10%, transparent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: var(--netflix-black);
+        }
+
+        .navbar .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--netflix-red);
+            letter-spacing: 2px;
+        }
+
+        .navbar .contact {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .navbar .contact a {
+            color: var(--netflix-white);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .contact a:hover {
+            color: var(--netflix-red);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23141414"/><path d="M0,300 Q300,100 600,300 T1200,300 L1200,600 L0,600 Z" fill="%231f1f1f"/></svg>') center/cover;
+            margin-top: 70px;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 64px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-content .tagline {
+            font-size: 24px;
+            color: var(--netflix-gray);
+            margin-bottom: 30px;
+        }
+
+        .hero-content .badges {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            background: var(--netflix-red);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .badge.secondary {
+            background: var(--card-bg);
+            border: 1px solid var(--netflix-gray);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--netflix-red);
+            color: var(--netflix-white);
+        }
+
+        .btn-primary:hover {
+            background: #f40612;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--netflix-white);
+            border: 1px solid var(--netflix-gray);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Section Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 50px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--netflix-white);
+        }
+
+        /* Description Section */
+        .description {
+            background: var(--netflix-dark-gray);
+            padding: 40px;
+            border-left: 4px solid var(--netflix-red);
+            margin-bottom: 40px;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--netflix-red);
+            box-shadow: 0 8px 24px rgba(229, 9, 20, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--netflix-white);
+        }
+
+        .card-location {
+            font-size: 14px;
+            color: var(--netflix-gray);
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            color: var(--netflix-gray);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .card ul li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--netflix-red);
+            font-weight: 700;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .skill-tag {
+            background: rgba(229, 9, 20, 0.15);
+            border: 1px solid var(--netflix-red);
+            color: var(--netflix-white);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--netflix-red);
+            transform: scale(1.05);
+        }
+
+        /* Education & Projects Sidebar Style */
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 968px) {
+            .two-column-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background: var(--netflix-dark-gray);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--netflix-red);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--netflix-gray);
+            margin-top: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--netflix-black);
+            border-top: 1px solid var(--card-bg);
+            color: var(--netflix-gray);
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: var(--netflix-red);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .navbar .logo {
+                font-size: 24px;
+            }
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-content .tagline {
+                font-size: 18px;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">ROHAN</div>
+        <div class="contact">
+            <span>📍 Dallas, TX</span>
+            <span>📞 240-854-3253</span>
+            <a href="mailto:pradyumnarohan@gmail.com">✉️ Email</a>
+            <a href="https://www.linkedin.com/in/rohanpradyumna/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Rohan Pradyumna</h1>
+            <p class="tagline">AI Product Leader & Builder | 0→1 Product Expert</p>
+            <div class="badges">
+                <span class="badge">★★★★★ Rated</span>
+                <span class="badge secondary">25K+ Users Served</span>
+                <span class="badge secondary">Ethical AI Advocate</span>
+                <span class="badge secondary">Zero to One Expert</span>
+            </div>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="window.location.href='mailto:pradyumnarohan@gmail.com'">▶ Contact Me</button>
+                <button class="btn btn-secondary" onclick="window.location.href='https://www.linkedin.com/in/rohanpradyumna/'">More Info</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="container">
+        <div class="stats-bar animate">
+            <div class="stat">
+                <span class="stat-number">4+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">25K+</span>
+                <span class="stat-label">Users Served</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">$150K</span>
+                <span class="stat-label">Raised</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">92%</span>
+                <span class="stat-label">User Satisfaction</span>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="description animate">
+            AI Product leader and builder with end-to-end experience taking 0→1 products to market, shipping voice and chat agents, and standing up evaluation/governance for GenAI systems. Strong in PRDs, road-mapping, analytics, and rapid prototyping—comfortable across OpenAI/Azure, RAG pipelines, Twilio/Genesys voice, and data-driven decisioning.
+        </div>
+
+        <!-- Work Experience -->
+        <h2 class="section-title">Work Experience</h2>
+        <div class="cards-grid animate">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">NSP Systems</div>
+                        <div class="card-location">Dallas, TX • Jun 2025 – Present</div>
+                    </div>
+                </div>
+                <div class="card-subtitle">AI Product Consultant</div>
+                <ul>
+                    <li>Pioneered <strong>SimuCall AI</strong>, an IVR testing platform simulating thousands of customer personas and full auth flows; integrated Twilio outbound calling, OTP handling, and Genesys routing to eliminate weeks of manual QA and achieve near-100% routing accuracy.</li>
+                    <li>Built an AI-powered IVR POC (Eleven Labs + Genesys) cutting average wait times from 90s → 20s, boosting CSAT by 65%, and automating ticketing to save 3–5 minutes per support call.</li>
+                    <li>Served as AI QA consultant for OpenAI + RAG + Twilio virtual agent; analyzed 20K+ chats, added eval benchmarks (RLHF, LangFuse), and rescued 20% of failing conversations—preventing 2,000+ truck rolls in 4 months.</li>
+                    <li>Delivered POCs including a <em>NOC Intelligence Map</em> (180+ FBOs, real-time weather alerts) reducing decision delays ~40%, and an <em>Executive Research Assistant</em> that saved 50+ hours/quarter.</li>
+                    <li>Product-managed <em>Modozo</em> (AI supply-chain optimization) 0→1: multi-persona research, PRDs, roadmaps; reduced production cycles from 120 → 60–70 days, driving ~40% efficiency gains.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Intripid (formerly Travana)</div>
+                        <div class="card-location">Dallas, TX • Apr 2023 – May 2025</div>
+                    </div>
+                </div>
+                <div class="card-subtitle">Co-Founder & Product Lead</div>
+                <ul>
+                    <li>Drove 0 to 1 launch of a real-time location-aware AI travel recommendation system called <strong>Intripid: What's Next</strong> in 40 days, onboarding 2,000+ users in two weeks through automated, AI-first journeys.</li>
+                    <li>Architected a multi-agent RAG recommendation engine that delivered <strong>92% user satisfaction</strong> vs. 78% baseline GPT-4 output.</li>
+                    <li>Engineered an AI-powered voice travel advisor using <strong>Eleven Labs</strong> and internal APIs to provide real-time, hands-free travel suggestions, achieving <strong>90% task completion</strong> in user testing.</li>
+                    <li>Secured <strong>$150K</strong> (incl. $50K non-dilutive grant) and closed <strong>$50K ARR</strong> via enterprise pilots; led a cross-functional team of 6 using Agile sprints. Received <strong>$100K AWS Credits</strong> from NVIDIA Inception Program.</li>
+                    <li>Among fewer than 1% of international students to found a venture, self-taught end-to-end startup development, merged with a complementary firm to strengthen the founding team, and <strong>pivoted B2C → B2B</strong>, unlocking recurring revenue and shorter sales cycles.</li>
+                    <li>Selected for <strong>Antler Austin</strong> Founder in Residence program (top 3% of 6,000 applicants); pitched Intripid's AI roadmap to the investment committee.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Flock AI</div>
+                        <div class="card-location">Hyderabad, India • Sep 2021 – Aug 2022</div>
+                    </div>
+                </div>
+                <div class="card-subtitle">Associate Product Manager</div>
+                <ul>
+                    <li>Co-created product strategy & roadmap; shipped MVP with a lean team of 4.</li>
+                    <li>Scaled to <strong>25K users</strong> via behavioral analytics, refined journeys, and improved acquisition funnels.</li>
+                    <li>Ran competitive intelligence and UX audits, lifting design workflow efficiency <strong>67%</strong> and achieving a <strong>2.5× LTV/CAC</strong>.</li>
+                    <li>Drove UI wireframes and A/B tests with 1,000 testers; improved product-market alignment and engagement (+12%).</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Brightcom Group</div>
+                        <div class="card-location">Hyderabad, India • Aug 2019 – Sep 2021</div>
+                    </div>
+                </div>
+                <div class="card-subtitle">Product Intern</div>
+                <ul>
+                    <li>Developed cloud architecture for an internal data-annotation tool; reduced operating costs by 35%.</li>
+                    <li>Authored PRDs; partnered with UI/UX to define Datametrix (data-tagging platform) packaging and framework.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Two Column Layout for Education/Projects and Skills -->
+        <div class="two-column-grid">
+            <!-- Left Column: Leadership & Volunteering -->
+            <div>
+                <h2 class="section-title">Leadership & Volunteering</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">Blood Warriors India</div>
+                                <div class="card-location">India</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">Volunteer</div>
+                        <ul>
+                            <li>Supported blood donation drives and donor coordination and facilitated over 2000+ blood donations for Thalassemia patients; assisted with outreach and logistics to improve access for urgent cases.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">Make A Difference India</div>
+                                <div class="card-location">Hyderabad, India • Jun 2018 – May 2021</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">City Manager, Human Capital</div>
+                        <ul>
+                            <li>Led a 15-member HR team; recruited, onboarded, and retained 200+ volunteers with 55% retention.</li>
+                            <li>Ranked top-5 campaigner nationally; mobilized 1,000+ new volunteers and created trauma-healing workshops ("Circle of Life," "River of Life").</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">Hope by Kelly School of Management</div>
+                                <div class="card-location">Hyderabad, India • Mar 2020 – May 2021</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">Volunteer</div>
+                        <ul>
+                            <li>Joined Indiana University's HOPE Digital Project to support COVID-impacted startups worldwide.</li>
+                            <li>Launched no-code/low-code sites and apps (Bubble, Wix) restoring critical revenue channels for small businesses.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Education & Projects -->
+            <div>
+                <h2 class="section-title">Education</h2>
+                <div class="card">
+                    <div class="card-title">University of Maryland</div>
+                    <div class="card-subtitle">Robert H. Smith School of Business</div>
+                    <div class="card-location">Master of Science, Information Systems • Dec 2023</div>
+                    <ul style="margin-top: 15px;">
+                        <li>Teaching Assistant: Led "Introduction to Information Systems" tutorials; graded 128 students over 10 tasks.</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-title">Mahatma Gandhi Institute of Technology</div>
+                    <div class="card-subtitle">Bachelor of Technology, Electrical Engineering</div>
+                    <div class="card-location">Hyderabad, India • Sep 2021</div>
+                    <ul style="margin-top: 15px;">
+                        <li>Publication (IRJEC): Sentiment Analysis on COVID-19 Vaccination Tweets (1.6M+ tweets, NLP, visualizations).</li>
+                    </ul>
+                </div>
+
+                <h2 class="section-title" style="margin-top: 40px;">Projects</h2>
+                <div class="card">
+                    <div class="card-title">SimuCall AI</div>
+                    <div class="card-subtitle">Testing Platform • 2025</div>
+                    <ul>
+                        <li>Autonomous IVR persona simulation with Twilio, OTP flows, and Genesys routing validation.</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-title">Universal Billing Integration Protocol (MCP)</div>
+                    <div class="card-subtitle">PoC • 2025</div>
+                    <ul>
+                        <li>Prototyped an MCP server exposing vendor-neutral tools with canonical JSON schemas, enabling a single integration path for Stripe-like, telco, and legacy billing APIs.</li>
+                        <li>Standardized field mappings and idempotent payment flows; demoed cross-provider calls end-to-end and cut basic integration setup from days to minutes in test sandboxes.</li>
+                    </ul>
+                </div>
+
+                <h2 class="section-title" style="margin-top: 40px;">Achievements</h2>
+                <div class="card">
+                    <ul>
+                        <li>Selected: Antler Austin Founder-in-Residence (top 3% of 6,000 applicants)</li>
+                        <li>Raised $150K (incl. $50K grant) • Closed $50K ARR via pilots</li>
+                        <li>NVIDIA Inception: $100K AWS Credits</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <h2 class="section-title">Skills & Technologies</h2>
+        <div class="skills-container animate">
+            <span class="skill-tag">GenAI & LLMs</span>
+            <span class="skill-tag">OpenAI / Azure OpenAI</span>
+            <span class="skill-tag">Prompt & Context Eng.</span>
+            <span class="skill-tag">Multi-Agent RAG</span>
+            <span class="skill-tag">Vector Search</span>
+            <span class="skill-tag">Eleven Labs (Voice)</span>
+            <span class="skill-tag">Twilio</span>
+            <span class="skill-tag">Genesys</span>
+            <span class="skill-tag">PRDs & Roadmaps</span>
+            <span class="skill-tag">OKRs</span>
+            <span class="skill-tag">Agile / Scrum (Jira)</span>
+            <span class="skill-tag">A/B & MVT Testing</span>
+            <span class="skill-tag">Stakeholder Storytelling</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Python (pandas)</span>
+            <span class="skill-tag">Analytics (GA, PostHog)</span>
+            <span class="skill-tag">Metabase</span>
+            <span class="skill-tag">Tableau / Power BI</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Lovable.dev / Replit / v0.dev</span>
+            <span class="skill-tag">n8n / Logic Apps</span>
+            <span class="skill-tag">Power Automate</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Responsible AI • SOC2 • GDPR</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 Rohan Pradyumna | AI Product Leader & Builder</p>
+        <p>Connect: <a href="mailto:pradyumnarohan@gmail.com">pradyumnarohan@gmail.com</a> |
+        <a href="https://www.linkedin.com/in/rohanpradyumna/" target="_blank" rel="noreferrer">LinkedIn</a></p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .animate').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
